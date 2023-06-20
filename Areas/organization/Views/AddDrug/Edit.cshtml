@@ -1,0 +1,305 @@
+﻿@model WebApplication8.Models.drug
+
+@{
+    Layout = null;
+    ViewBag.Title = "Edit";
+}
+
+<style>
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+
+    ::-webkit-scrollbar {
+        width: 15px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: white;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #0075ff;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #0075ff;
+        }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #F5F5F5;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        position: relative;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .header {
+        position: relative;
+        background-color: white;
+        -webkit-box-shadow: 0 0 10px #ddd;
+        -moz-box-shadow: 0 0 10px #ddd;
+        box-shadow: 0 0 10px #ddd;
+    }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .header .logo {
+            color: #2196f3;
+            font-size: 26px;
+            font-weight: bold;
+            height: 72px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+
+        .header .main-nav {
+            display: flex;
+        }
+
+
+
+            .header .main-nav > li > a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 72px;
+                position: relative;
+                color: black;
+                padding: 0 15px;
+                transition: 0.3s;
+                overflow: hidden;
+            }
+
+
+
+                .header .main-nav > li > a::before {
+                    content: "";
+                    width: 100%;
+                    height: 4px;
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    background-color: #2196f3;
+                    transition: 0.3s;
+                }
+
+                .header .main-nav > li > a:hover {
+                    color: #2196f3;
+                    background-color: #fafafa;
+                }
+
+                    .header .main-nav > li > a:hover::before {
+                        left: 0;
+                    }
+
+            .header .main-nav > li > .active {
+                color: #2196f3;
+                background-color: #fafafa;
+            }
+
+                .header .main-nav > li > .active::before {
+                    left: 0;
+                }
+    .form-horizontal {
+        width: fit-content;
+        height: fit-content;
+        background-color: rgba(0,0,0,0.7);
+        color: #fff;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        box-sizing: border-box;
+        padding: 70px 30px;
+        box-shadow: 0px 0px 3px black;
+        border-radius: 30px;
+        margin-top: 20px;
+    }
+
+        .form-horizontal h4 {
+            text-align: center;
+            margin: 0 auto;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+    .form {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        gap: 10px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+        padding: 8px 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        color: #555;
+        box-sizing: border-box;
+        width: 100%;
+        margin-bottom: 16px;
+    }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #66afe9;
+            box-shadow: 0 0 5px rgba(102,175,233,.6);
+        }
+
+    input[type="submit"] {
+        border: none;
+        outline: none;
+        height: 40px;
+        background-color: #0075ff;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 10px;
+        font-family: "indie flower", cursive;
+        font-weight: bold;
+        margin-top: 20px;
+        padding: 5px;
+        width: 100px;
+    }
+
+        input[type="submit"]:hover {
+            opacity: 0.7;
+            
+            cursor: pointer;
+        }
+    .field-validation-error {
+        color: #e80c4d;
+        font-weight: bold;
+    }
+
+    .field-validation-valid {
+        display: none;
+    }
+
+
+
+    input[type="checkbox"].input-validation-error {
+        border: 0 none;
+    }
+
+    .validation-summary-errors {
+        color: #e80c4d;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+
+</style>
+
+<div class="header">
+    <div class="container">
+
+        <a href="#" class="logo">Organization</a>
+        <ul class="main-nav">
+
+            <li>@Html.ActionLink("List Of Drug", "Index")</li>
+            <li>@Html.ActionLink("Logout", "Logout")</li>
+
+
+        </ul>
+
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Edit Drug</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+    <div class="form">
+        <div class="form-group">
+            @Html.LabelFor(model => model.TradeName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TradeName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TradeName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ScientificName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ScientificName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ScientificName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SideEffect, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SideEffect, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SideEffect, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.prescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.prescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.prescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+

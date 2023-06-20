@@ -1,0 +1,348 @@
+﻿@model IEnumerable<WebApplication8.Models.AddEffe>
+
+@{
+    Layout = null;
+    ViewBag.Title = "AddEffe";
+}
+
+<style>
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+
+    ::-webkit-scrollbar {
+        width: 15px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: white;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #0075ff;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #0075ff;
+        }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+
+
+    a {
+        text-decoration: none;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        margin-top: 0;
+        padding: 0;
+        background-color: #F5F5F5;
+        position: relative;
+    }
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .header {
+        position: relative;
+        background-color: white;
+        -webkit-box-shadow: 0 0 10px #ddd;
+        -moz-box-shadow: 0 0 10px #ddd;
+        box-shadow: 0 0 10px #ddd;
+    }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .header .logo {
+            color: #2196f3;
+            font-size: 26px;
+            font-weight: bold;
+            height: 72px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+
+        .header .main-nav {
+            display: flex;
+        }
+
+
+            .header .main-nav > li:hover .mega-menue {
+                opacity: 1;
+                z-index: 100;
+                top: calc(100% + 1px);
+            }
+
+            .header .main-nav > li > a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 72px;
+                position: relative;
+                color: black;
+                padding: 0 30px;
+                transition: 0.3s;
+                overflow: hidden;
+            }
+
+
+
+                .header .main-nav > li > a::before {
+                    content: "";
+                    width: 100%;
+                    height: 4px;
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    background-color: #2196f3;
+                    transition: 0.3s;
+                }
+
+                .header .main-nav > li > a:hover {
+                    color: #2196f3;
+                    background-color: #fafafa;
+                }
+
+                    .header .main-nav > li > a:hover::before {
+                        left: 0;
+                    }
+
+            .header .main-nav > li > .active {
+                color: #2196f3;
+                background-color: #fafafa;
+            }
+
+                .header .main-nav > li > .active::before {
+                    left: 0;
+                }
+
+    .form-horizontal {
+        overflow: auto;
+        min-width: 500px;
+        height: 80%;
+        background-color: rgba(0,0,0,0.7);
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        box-sizing: border-box;
+        padding: 70px 30px;
+        box-shadow: 0px 0px 3px black;
+        border-radius: 30px;
+    }
+
+        .form-horizontal::-webkit-scrollbar {
+            display: none;
+        }
+
+        .form-horizontal h4 {
+            text-align: center;
+            margin: 0 auto;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .form-horizontal h3 {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            color: orangered;
+        }
+
+    .form-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+
+    label {
+        margin-right: 15px;
+        color: gainsboro;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+        font-size: 20px;
+    }
+
+    input {
+        flex: 1;
+        border: none;
+        border-bottom: 1px solid #fff;
+        background: transparent;
+        outline: none;
+        height: 40px;
+        color: #fff;
+        font-size: 16px;
+        font-family: "indie flower", cursive;
+    }
+
+    .form {
+        margin: 15px 0 15px 0;
+    }
+
+    input[type="submit"] {
+        border: none;
+        outline: none;
+        height: 40px;
+        background-color: #0075ff;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 10px;
+        font-family: "indie flower", cursive;
+        font-weight: bold;
+        margin-top: 20px;
+        padding: 5px;
+        width: 100px;
+        flex: 1 0 200px;
+    }
+
+
+        input[type="submit"]:hover {
+            opacity: 0.7;
+            
+            cursor: pointer;
+        }
+
+    a {
+        text-decoration: none;
+        border: none;
+        outline: none;
+        height: 60px;
+        background-color: #0075ff;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 10px;
+        font-family: "indie flower", cursive;
+        font-weight: bold;
+        margin-top: 20px;
+        padding: 10px;
+        width: 100px;
+        flex: 1 0 200px;
+    }
+
+        a:hover {
+            opacity: 0.7;
+            
+            cursor: pointer;
+        }
+
+    .list-create {
+        margin: 10 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .field-validation-error {
+        color: #e80c4d;
+        font-weight: bold;
+    }
+
+    .field-validation-valid {
+        display: none;
+    }
+
+
+
+    input[type="checkbox"].input-validation-error {
+        border: 0 none;
+    }
+
+    .validation-summary-errors {
+        color: #e80c4d;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Add Effe</h4>
+        <br />
+        <h3>If There Is No Conflict, Write 1</h3>
+        <hr />
+        <div class="form">
+            @for (var x = 0; x < Model.Count(); x++)
+            {
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                if (ViewBag.c != null && (int)ViewBag.c == x)
+                {
+            <span class="validation-summary-errors">@ViewBag.error</span>
+                }
+                <div class="form-group">
+                    @Html.Label("Effective " + (x + 1), htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => Model.ToList()[x].New_effe.name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => Model.ToList()[x].New_effe.name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.Label("Effective " + (x + 1), htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => Model.ToList()[x].old_effe.name, (SelectList)ViewBag.effe, "Select Effective")
+
+                        @Html.ValidationMessageFor(model => Model.ToList()[x].old_effe.name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.Label("Number of Conflicts For This Effective", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => Model.ToList()[x].No_con, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => Model.ToList()[x].No_con, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="list-create">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add" class="btn btn-default" />
+                </div>
+            </div>
+            <div>
+                @Html.ActionLink("List", "Index")
+            </div>
+        </div>
+    </div>
+}
+
+

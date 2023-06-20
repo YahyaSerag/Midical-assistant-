@@ -1,0 +1,270 @@
+﻿@model WebApplication8.Models.AddDrug
+
+@{
+    Layout = null;
+    ViewBag.Title = "AddEffecttive";
+}
+
+
+<style>
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+
+    ::-webkit-scrollbar {
+        width: 15px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: white;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #0075ff;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #0075ff;
+        }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #F5F5F5;
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .content {
+        min-width: 500px;
+        height: auto;
+        background-color: rgba(0,0,0,0.7);
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        box-sizing: border-box;
+        padding: 30px 30px;
+        box-shadow: 0px 0px 3px black;
+        border-radius: 30px;
+    }
+
+    dl {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-gap: 10px;
+        padding: 5px 0;
+    }
+
+    dt, dd {
+        width: fit-content;
+        margin: 0;
+    }
+
+    dt {
+        color: #13b6e8;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+        font-size: 20px;
+    }
+
+    dd {
+        color: white;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        font-size: 16px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    hr {
+        margin-bottom: 15px;
+    }
+
+    label {
+        margin-right: 15px;
+        color: #13b6e8;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    input {
+        border: none;
+        border-bottom: 1px solid #fff;
+        background: transparent;
+        outline: none;
+        height: auto;
+        color: #fff;
+        font-size: 16px;
+        font-family: "indie flower", cursive;
+    }
+
+        input[type="submit"] {
+            border: none;
+            outline: none;
+            height: 40px;
+            background-color: #0075ff;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 10px;
+            font-family: "indie flower", cursive;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 5px;
+            width: 100px;
+            flex: 1 0 200px;
+            margin: 5px;
+        }
+
+
+            input[type="submit"]:hover {
+                opacity: 0.7;
+                
+                cursor: pointer;
+            }
+
+    a {
+        text-decoration: none;
+        border: none;
+        outline: none;
+        height: 60px;
+        background-color: #0075ff;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 10px;
+        font-family: "indie flower", cursive;
+        font-weight: bold;
+        margin-top: 20px;
+        padding: 10px;
+        width: 100px;
+        flex: 1 0 200px;
+    }
+
+        a:hover {
+            opacity: 0.7;
+            
+            cursor: pointer;
+        }
+
+    .list-create {
+        margin: 10 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .field-validation-error {
+        color: #e80c4d;
+        font-weight: bold;
+    }
+
+    .field-validation-valid {
+        display: none;
+    }
+
+
+
+    input[type="checkbox"].input-validation-error {
+        border: 0 none;
+    }
+
+    .validation-summary-errors {
+        color: #e80c4d;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+</style>
+
+<div class="content">
+    <h2>Add Effecttive</h2>
+
+    <div>
+        <h4>Drug</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.drug.TradeName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.drug.TradeName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.drug.ScientificName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.drug.ScientificName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.drug.SideEffect)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.drug.SideEffect)
+            </dd>
+
+
+
+
+
+        </dl>
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Effective</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.No_effe, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.No_effe, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.No_effe, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="list-create">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Add" class="btn btn-default" />
+                    </div>
+                </div>
+                <div>
+                    @Html.ActionLink("List", "Index")
+                </div>
+            </div>
+
+        </div>
+    }
+
+
+
+
+</div>

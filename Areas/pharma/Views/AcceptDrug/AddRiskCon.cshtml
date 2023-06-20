@@ -1,0 +1,522 @@
+﻿
+@model WebApplication8.Models.risk_conflict
+
+@{
+    Layout = null;
+    ViewBag.Title = "editt";
+}
+
+<style>
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+
+    ::-webkit-scrollbar {
+        width: 15px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: white;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #0075ff;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #0075ff;
+        }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #F5F5F5;
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .header {
+        position: relative;
+        background-color: white;
+        -webkit-box-shadow: 0 0 10px #ddd;
+        -moz-box-shadow: 0 0 10px #ddd;
+        box-shadow: 0 0 10px #ddd;
+    }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .header .logo {
+            color: #2196f3;
+            font-size: 26px;
+            font-weight: bold;
+            height: 72px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+
+        .header .main-nav {
+            display: flex;
+        }
+
+
+
+            .header .main-nav > li > a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 72px;
+                position: relative;
+                color: black;
+                padding: 0 15px;
+                transition: 0.3s;
+                overflow: hidden;
+            }
+
+
+
+                .header .main-nav > li > a::before {
+                    content: "";
+                    width: 100%;
+                    height: 4px;
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    background-color: #2196f3;
+                    transition: 0.3s;
+                }
+
+                .header .main-nav > li > a:hover {
+                    color: #2196f3;
+                    background-color: #fafafa;
+                }
+
+                    .header .main-nav > li > a:hover::before {
+                        left: 0;
+                    }
+
+            .header .main-nav > li > .active {
+                color: #2196f3;
+                background-color: #fafafa;
+            }
+
+                .header .main-nav > li > .active::before {
+                    left: 0;
+                }
+
+    .content {
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        color: #fff;
+        transform: translateY(2%);
+        padding: 10px;
+        margin: 20px 100px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .clid {
+        height: 330px;
+        background-color: rgba(0,0,0,0.7);
+        color: #fff;
+        box-sizing: border-box;
+        padding: 0 30px;
+        box-shadow: 0px 0px 3px black;
+        border-radius: 30px;
+        padding-bottom: 43px;
+        padding-top: 30px;
+    }
+
+    .edit {
+        display: flex;
+        justify-content: center;
+    }
+
+    .edit2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+
+    .form-horizontal h4 {
+        text-align: center;
+        margin: 0 auto;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        color: #fff;
+    }
+
+    .form {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+
+    label {
+        margin-right: 15px;
+        color: white;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+        font-size: 20px;
+    }
+
+    .form .list-create {
+        grid-column: 2;
+        transform: translateY(20px);
+    }
+
+        .form .list-create input[type="submit"] {
+            border: none;
+            outline: none;
+            height: 40px;
+            background-color: #0075ff;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 10px;
+            font-family: "indie flower", cursive;
+            font-weight: bold;
+            padding: 5px;
+            width: 100px;
+        }
+
+            .form .list-create input[type="submit"]:hover {
+                opacity: 0.7;
+                cursor: pointer;
+            }
+
+
+
+
+
+    .form .list-create {
+        margin: 10 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    select {
+        width: 100%;
+        height: 40px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+        background-color: #fff;
+        color: #333333;
+    }
+
+        select:hover, select:focus {
+            border-color: #333333;
+        }
+
+        select option {
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #333333;
+        }
+
+        select::-webkit-search-decoration {
+            -webkit-appearance: none;
+        }
+
+        select::-webkit-search-cancel-button {
+            -webkit-appearance: none;
+        }
+
+    .form2 {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 35px;
+        margin-bottom: 20px;
+        gap: 15px;
+    }
+
+    .form input {
+        border: none;
+        border-bottom: 1px solid rgb(240, 240, 240);
+        background: transparent;
+        outline: none;
+        height: 40px;
+        color: black;
+        font-size: 16px;
+        font-family: "indie flower", cursive;
+        display: block;
+    }
+
+    .form2 input {
+        border: none;
+        border-bottom: 1px solid rgb(240, 240, 240);
+        background: transparent;
+        outline: none;
+        height: 40px;
+        color: #fff;
+        font-size: 16px;
+        font-family: "indie flower", cursive;
+        display: block;
+    }
+
+    ::placeholder {
+        color: gray;
+        font-style: italic;
+    }
+
+    label {
+        margin-top: 15px;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+        font-size: 20px;
+    }
+
+
+
+    .form2 input[type="submit"] {
+        border: none;
+        outline: none;
+        height: 40px;
+        background-color: #0075ff;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 10px;
+        font-family: "indie flower", cursive;
+        font-weight: bold;
+        margin-top: 20px;
+        padding: 5px;
+        width: 100px;
+        margin: 5px;
+    }
+
+        .form2 input[type="submit"]:hover {
+            opacity: 0.7;
+            cursor: pointer;
+        }
+
+    .field-validation-error {
+        color: #e80c4d;
+        font-weight: bold;
+    }
+
+    .field-validation-valid {
+        display: none;
+    }
+
+
+
+    input[type="checkbox"].input-validation-error {
+        border: 0 none;
+    }
+
+    .validation-summary-errors {
+        color: #e80c4d;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+</style>
+
+<div class="header">
+    <div class="container">
+
+        <a href="#" class="logo">Pharmacy</a>
+        <ul class="main-nav">
+
+            <li>@Html.ActionLink("Back to Drug", "Details", new { id = (int)Session["drug_id"] })</li>
+            <li>@Html.ActionLink("Logout", "Logout")</li>
+            <li>@Html.ActionLink("Search", "Search")</li>
+
+        </ul>
+
+    </div>
+</div>
+
+<div class="content">
+    <div class="edit">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal clid">
+                <h4>Add Risk Conflict</h4>
+                <hr />
+                <div>
+                    <span class="validation-summary-errors">@ViewBag.message</span>
+                </div>
+                <div class="form">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.conflict.effective.name, "effective", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("effective", null, "Selet Effective", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.conflict.effective.name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.conflict.effective1.name, "conflict", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("effective1", null, "Select Conflict", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.conflict.effective1.name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.risk.name, "risk", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("risk_id", null, "Select Risk", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.risk.name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="list-create">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+
+
+
+
+    <div class="edit2">
+        @using (Html.BeginForm("AddEffective", "AcceptDrug", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal clid">
+                <h4>Add Effective</h4>
+                <hr />
+
+
+
+                <div class="form2">
+                    <div>
+
+
+                        <div class="col-md-10">
+                            @Html.Editor("name", new { htmlAttributes = new { @class = "form-control", @placeholder = "Add Effec" } })
+                            @Html.ValidationMessage("name", "", new { @class = "text-danger" })
+                            <br />
+                            @if (TempData["effee"] != null)
+                            {
+                                <span class="validation-summary-errors">@TempData["effee"]</span>
+                            }
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Add" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @using (Html.BeginForm("AddRisk", "AcceptDrug", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal clid">
+                <h4>Add Risk</h4>
+                <hr />
+
+
+
+                <div class="form2">
+                    <div>
+
+
+                        <div class="col-md-10">
+                            @Html.Editor("name", new { htmlAttributes = new { @class = "form-control", @placeholder = "Add Effec" } })
+                            @Html.ValidationMessage("name", "", new { @class = "text-danger" })
+                            <br />
+                            @if (TempData["riskk"] != null)
+                            {
+                                <span class="validation-summary-errors">@TempData["riskk"]</span>
+                            }
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Add" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#effective1").select2();
+        $("#effective").select2();
+        $("#risk_id").select2();
+    });
+</script>

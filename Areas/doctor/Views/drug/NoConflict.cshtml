@@ -1,0 +1,379 @@
+﻿@model WebApplication8.Models.conf_drug
+
+@{
+    Layout = null;
+    ViewBag.Title = "No coflict";
+}
+
+<style>
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+
+    ::-webkit-scrollbar {
+        width: 15px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: white;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #0075ff;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #0075ff;
+        }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #F5F5F5;
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .header {
+        position: relative;
+        background-color: white;
+        -webkit-box-shadow: 0 0 10px #ddd;
+        -moz-box-shadow: 0 0 10px #ddd;
+        box-shadow: 0 0 10px #ddd;
+    }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .header .logo {
+            color: #2196f3;
+            font-size: 26px;
+            font-weight: bold;
+            height: 72px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+
+        .header .main-nav {
+            display: flex;
+        }
+
+
+
+            .header .main-nav > li > a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 72px;
+                position: relative;
+                color: black;
+                padding: 0 30px;
+                transition: 0.3s;
+                overflow: hidden;
+            }
+
+
+
+                .header .main-nav > li > a::before {
+                    content: "";
+                    width: 100%;
+                    height: 4px;
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    background-color: #2196f3;
+                    transition: 0.3s;
+                }
+
+                .header .main-nav > li > a:hover {
+                    color: #2196f3;
+                    background-color: #fafafa;
+                }
+
+                    .header .main-nav > li > a:hover::before {
+                        left: 0;
+                    }
+
+            .header .main-nav > li > .active {
+                color: #2196f3;
+                background-color: #fafafa;
+            }
+
+                .header .main-nav > li > .active::before {
+                    left: 0;
+                }
+
+
+    .form-horizontal {
+        padding: 30px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+    }
+
+        .form-horizontal .conflict h4 {
+            font-size: 30px;
+            ;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 0px;
+            letter-spacing: 2px;
+        }
+
+            .form-horizontal .conflict h4 span {
+                color: red;
+            }
+
+    .drugs {
+        min-width: 80%;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 3px black;
+        border-radius: 7px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 30px 30px;
+    }
+
+    dl {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-gap: 10px;
+        padding: 5px 0;
+    }
+
+    dt, dd {
+        width: fit-content;
+        margin: 0;
+    }
+
+    dt {
+        color: #d20a0a;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+        font-size: 20px;
+    }
+
+    dd {
+        color: black;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        font-size: 16px;
+    }
+
+    .responsive-table {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-spacing: 0;
+        border-radius: 7px;
+    }
+
+        table thead td {
+            background-color: #00d1b2;
+            font-weight: bold;
+        }
+
+        table td {
+            padding: 15px;
+        }
+
+        table tbody td {
+            border-bottom: 1px solid #eee;
+            border-left: 1px solid #eee;
+            transition: 0.3s;
+        }
+
+        table tbody tr td:last-child {
+            border-right: 1px solid #eee;
+        }
+
+    .detils {
+        text-decoration: none;
+        border: none;
+        outline: none;
+        background-color: #942080;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 7px;
+        font-family: "indie flower", cursive;
+        font-weight: bold;
+        margin-bottom: 50px;
+        padding: 10px;
+        min-width: 100px;
+    }
+
+        .detils:hover {
+            opacity: 0.7;
+            cursor: pointer;
+        }
+</style>
+
+<div class="header">
+    <div class="container">
+
+        <a href="#" class="logo">Doctor</a>
+        <ul class="main-nav">
+
+            <li>@Html.ActionLink("Search Drug", "Index")</li>
+            <li>@Html.ActionLink("Check Conflict", "Create")</li>
+            <li>@Html.ActionLink("Update Info", "UpdateInfo")</li>
+            <li>@Html.ActionLink("Logout", "Logout")</li>
+
+
+        </ul>
+
+    </div>
+</div>
+
+<div class="form-horizontal">
+
+    <div class="conflict">
+        <h4><span>Coflict</span> not found</h4>
+    </div>
+    <div class="drugs">
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => Model.first_drug.TradeName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => Model.first_drug.TradeName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => Model.first_drug.ScientificName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => Model.first_drug.ScientificName)
+            </dd>
+            @for (int i = 0; i < Model.first_effectives.Count; i++)
+            {
+                <dt>
+                    @Html.DisplayName("effective " + (i + 1))
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => Model.first_effectives[i].name)
+                </dd>
+            }
+
+
+
+        </dl>
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => Model.second_drug.TradeName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => Model.second_drug.TradeName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => Model.second_drug.ScientificName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => Model.second_drug.ScientificName)
+            </dd>
+            @for (int i = 0; i < Model.second_effectives.Count; i++)
+            {
+                <dt>
+                    @Html.DisplayName("effective " + (i + 1))
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => Model.second_effectives[i].name)
+                </dd>
+            }
+
+
+
+        </dl>
+    </div>
+
+    <div class="responsive-table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>
+                        @Html.DisplayName("effective")
+                    </td>
+                    <td>
+                        @Html.DisplayName("conflict")
+                    </td>
+                    <td>
+                        @Html.DisplayName("risk")
+                    </td>
+
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.risk_Conflicts)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.conflict.effective.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.conflict.effective1.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.risk.name)
+                        </td>
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="links">
+        <p>
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "detils" })
+        </p>
+    </div>
+</div>
+
+
+

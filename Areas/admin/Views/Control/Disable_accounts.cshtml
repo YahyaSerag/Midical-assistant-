@@ -1,0 +1,295 @@
+﻿
+@model IEnumerable<WebApplication8.Models.user>
+
+@{
+    Layout = null;
+    ViewBag.Title = "Disable_accounts";
+}
+
+<style>
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+
+    ::-webkit-scrollbar {
+        width: 15px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: white;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #0075ff;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #0075ff;
+        }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-color: #F5F5F5;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .header {
+        position: relative;
+        background-color: white;
+        -webkit-box-shadow: 0 0 10px #ddd;
+        -moz-box-shadow: 0 0 10px #ddd;
+        box-shadow: 0 0 10px #ddd;
+    }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .header .logo {
+            color: #2196f3;
+            font-size: 26px;
+            font-weight: bold;
+            height: 72px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+
+        .header .main-nav {
+            display: flex;
+        }
+
+
+            .header .main-nav > li:hover .mega-menue {
+                opacity: 1;
+                z-index: 100;
+                top: calc(100% + 1px);
+            }
+
+            .header .main-nav > li > a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 72px;
+                position: relative;
+                color: black;
+                padding: 0 30px;
+                transition: 0.3s;
+                overflow: hidden;
+            }
+
+
+
+                .header .main-nav > li > a::before {
+                    content: "";
+                    width: 100%;
+                    height: 4px;
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    background-color: #2196f3;
+                    transition: 0.3s;
+                }
+
+                .header .main-nav > li > a:hover {
+                    color: #2196f3;
+                    background-color: #fafafa;
+                }
+
+                    .header .main-nav > li > a:hover::before {
+                        left: 0;
+                    }
+
+            .header .main-nav > li > .active {
+                color: #2196f3;
+                background-color: #fafafa;
+            }
+
+                .header .main-nav > li > .active::before {
+                    left: 0;
+                }
+
+    .form-horizontal {
+        padding: 10px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+    }
+
+        .form-horizontal .title h2 {
+            font-size: 30px;
+            ;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 0px;
+            letter-spacing: 2px;
+        }
+
+    .link a {
+        text-decoration: none;
+        border: none;
+        outline: none;
+        background-color: #942080;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 7px;
+        font-family: "indie flower", cursive;
+        font-weight: bold;
+        margin-bottom: 50px;
+        padding: 10px;
+        min-width: 100px;
+    }
+
+        .link a:hover {
+            opacity: 0.7;
+            cursor: pointer;
+        }
+
+    .responsive-table {
+        overflow-x: auto;
+        margin-right: 10px;
+    }
+
+    table {
+        width: 100%;
+        border-spacing: 0;
+    }
+
+        table thead td {
+            background-color: #00d1b2;
+            font-weight: bold;
+        }
+
+        table td {
+            padding: 15px;
+        }
+
+        table tbody td {
+            border-bottom: 1px solid #eee;
+            border-left: 1px solid #eee;
+            transition: 0.3s;
+        }
+
+        table tbody tr td:last-child {
+            border-right: 1px solid #eee;
+        }
+
+    .detils {
+        text-decoration: none;
+        border: none;
+        outline: none;
+        background-color: cadetblue;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 10px;
+        font-family: "indie flower", cursive;
+        font-weight: bold;
+        margin-top: 20px;
+        padding: 10px;
+        margin-right: 10px;
+    }
+
+        .detils:hover {
+            opacity: 0.7;
+            background-color: cadetblue;
+            cursor: pointer;
+        }
+</style>
+
+<div class="header">
+    <div class="container">
+
+        <a href="#" class="logo">Admin</a>
+        <ul class="main-nav">
+
+            <li>@Html.ActionLink("home", "Index")</li>
+            <li>@Html.ActionLink("Change Password", "UpdateInfo")</li>
+            <li>@Html.ActionLink("Enable Accounts", "Enable_accounts") </li>
+            <li>@Html.ActionLink("Disable Accounts", "Disable_accounts", null, new { @class = "active" })</li>
+            <li>@Html.ActionLink("Logout", "Logout")</li>
+
+
+        </ul>
+
+    </div>
+</div>
+<div class="form-horizontal">
+    <div class="title">
+        <h2>Disable_accounts</h2>
+    </div>
+
+    <div class="responsive-table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.name)
+                    </td>
+
+                    <td>
+                        @Html.DisplayNameFor(model => model.role)
+                    </td>
+                    <td>
+                        @Html.DisplayNameFor(model => model.accept)
+                    </td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.role)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.accept)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Enable", "enable", new { id = item.id }, new { @class = "detils", @id = Html.IdFor(modelItem => item.id) })
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
